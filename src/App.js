@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AddPerson from './componets/addPerson';
+import PersonCmp from './componets/person'
 
-class App extends Component {
-  render() {
+const App = () => {
+
+
+  rcvrHandler = (state) => {
+
+    const updatedPersons = [...this.state.person,{Name:state.personName,
+      Age:state.personAge}]
+
+    
+    this.setState ({
+      person:updatedPersons
+    })
+
+  }
+
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      This is a Testing app in Redux
+        <AddPerson  submitHandler = {this.rcvrHandler}/>
+        {
+          this.state.person.map(pass => {
+          return (
+          <PersonCmp name = {pass.Name} age={pass.Age}/>
+          )
+        }) }
       </div>
     );
-  }
+  
 }
 
 export default App;
