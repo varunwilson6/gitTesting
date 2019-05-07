@@ -3,10 +3,15 @@ import './App.css';
 import AddPerson from './componets/addPerson';
 import PersonCmp from './componets/person'
 
-const App = () => {
+class App extends Component {
+constructor () {
+  super();
+  this.state = {
+    person:[]
+  }
+}
 
-
-  rcvrHandler = (state) => {
+ rcvrHandler = (state) => {
 
     const updatedPersons = [...this.state.person,{Name:state.personName,
       Age:state.personAge}]
@@ -18,8 +23,8 @@ const App = () => {
 
   }
 
-
-    return (
+    render() {
+    return (  
       <div className="App">
       This is a Testing app in Redux
         <AddPerson  submitHandler = {this.rcvrHandler}/>
@@ -31,7 +36,7 @@ const App = () => {
         }) }
       </div>
     );
-  
+  }
 }
 
 export default App;
